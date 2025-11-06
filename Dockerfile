@@ -1,5 +1,5 @@
 # Bước 1: Chọn một "image" Tomcat 10.1 (hỗ trợ Jakarta EE 10 của bạn)
-FROM tomcat:10.1-jre17-slim
+FROM tomcat:10.1-jdk17
 
 # Bước 2: Xóa các ứng dụng mặc định trong Tomcat
 RUN rm -rf /usr/local/tomcat/webapps/*
