@@ -1,9 +1,14 @@
-# Bước 1: Chọn một "image" Tomcat 10.1 (hỗ trợ Jakarta EE 10 của bạn)
-FROM tomcat:10.1-jdk17
+# ----- GIAI ĐOẠN 1: Build (Xây dựng) -----
+# Sử dụng một image Maven (đã cài Java 17) để build file .war
+FROM maven:3.8-openjdk-17 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean install
 
-# Bước 2: Xóa các ứng dụng mặc định trong Tomcat
+# ----- GIAI ĐOẠN 2: Run (Chạy) -----
+# Sử dụng image Tomcat (đã cài Java 17) để chạy
+FROM tomcat:10.1-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Bước 3: Sao chép tệp .war của bạn vào thư mục webapps của Tomcat
-# Tệp .war này được lấy từ thư mục "target" sau khi bạn "Build" dự án
-COPY target/Mail_week1-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+# Sao chép file .war TỪ GIAI ĐOẠN 1 vào thư mục webapps của Tomcat
+COPY --from=builder /app/target/Mail_week1-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
