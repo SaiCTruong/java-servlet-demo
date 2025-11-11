@@ -1,49 +1,84 @@
 package murach.email;
 
 import java.io.*;
-import jakarta.servlet.*;
+import jakarta.servlet.*; 
 import jakarta.servlet.http.*;
 
-import murach.business.User;
-//import murach.data.UserDB;
+import murach.business.User; 
+
+
 public class EmailListServlet extends HttpServlet {
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
-        String url="/index.html";
-        //get current acction
+
+
+        String url = "/index.html";
+        
+
         String action = request.getParameter("action");
         if (action == null) {
-            action = "join"; //default action
+            action = "join"; 
         }
-        //perform action and set URL to approprivate page
+
+
         if (action.equals("join")) {
-            url= "/index.html"; //the join page
-        }
+            url = "/index.html";
+        } 
+
         else if (action.equals("add")) {
-            //get parameter from the request
+            
+    
+            String email = request.getParameter("email");
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
-            String email = request.getParameter("email");
-            
-           
+          
             User user = new User(firstName, lastName, email);
-            //UserDB.insert(user);
+
+    
+            String dateOfBirth = request.getParameter("dateOfBirth");
+            String heardFrom = request.getParameter("form"); 
+            String contactMethod = request.getParameter("contact");
+
+    
             
-            //set User object in request object and set URL
-            request.setAttribute("user", user);
-            url="/thanks.jsp";
+            String wantsUpdates = request.getParameter("like");
+            if (wantsUpdates == null) {
+                wantsUpdates = "No"; 
+            } else {
+                wantsUpdates = "Yes";
+            }
+            
+            String emailOK = request.getParameter("emailOK");
+            if (emailOK == null) {
+                emailOK = "No";
+            } else {
+                emailOK = "Yes";
+            }
+
+    
+            request.setAttribute("user", user); 
+            request.setAttribute("dateOfBirth", dateOfBirth); 
+            request.setAttribute("form", heardFrom); 
+            request.setAttribute("like", wantsUpdates);
+            request.setAttribute("emailOK", emailOK); 
+            request.setAttribute("contact", contactMethod);
+            
+            url = "/thanks.jsp";
         }
-        
+
+    
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
     }
-        
+
     @Override
     protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-                         throws ServletException, IOException {
+            HttpServletResponse response)
+            throws ServletException, IOException {
         doPost(request, response);
     }
 }

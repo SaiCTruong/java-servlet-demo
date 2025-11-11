@@ -7,8 +7,11 @@
     </head>
     
     <body>
-        <h1>Join our email list</h1>
-        <p>To join our email list, enter your name and email address below.</p>
+        <img src="logo_murach.png" width="200" height="200">
+        <h1>Survey</h1>
+        <p>If you have a moment, we'd appreciate it if you would fill out this survey.</p>
+        <h3>Your information:</h3>
+      
         <form action='emailList' method='post'>
             <input type='hidden' name='action' value='add'>
             
@@ -21,8 +24,28 @@
             <label>Last Name: </label>
             <input type='text' name='lastName' required><br>
             
-            <label>&nbsp;</label>
-            <input type='submit' value='Join Now' id='submit'><br>
+            <label>Date of Birth: </label>
+            <input type='text' name='dateOfBirth' required><br>
+            
+            <h2>How did you hear about us?</h2>
+            <input type="radio" name="form" value='Search engine' checked> Search engine <br>
+            <input type="radio" name="form" value='Word of mouth' > Word of mouth <br> 
+            <input type="radio" name="form" value='Social Media' > Social Media <br> 
+            <input type="radio" name="form" value='Other' > Other <br>
+            
+            <h2>Would you like to receive announcements about new CDs and special offers?</h2>
+            <input type='checkbox' name='like'>YES, I'd like that.<br>
+            <input type='checkbox' name='emailOK'>YES, please send me email announcements.<br>
+            
+            <label>Please contact me by:</label>
+            <select name='contact'>
+                <option>Email only</option>
+                <option>Postal mail only</option>
+                <option>Email or postal mail</option>
+            </select>
+            
+            <br>  
+            <input type='submit' value='Submit' id='submit'>
         </form>
     </body>
 </html>

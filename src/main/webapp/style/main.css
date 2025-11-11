@@ -9,12 +9,12 @@ h1{
 }
 label{
     float: left;
-    width: 6em;
+    width: 10em;
     margin-bottom: 0.5em;
 }
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"],  select {
     width: 15em;
-    margin-left: 0.5em;
+    margin-left: 0.5em; 
     margin-bottom: 0.5em;
 }
 br {
