@@ -1,25 +1,76 @@
-body{
+
+body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11pt;
-    margin-left: 2em;
-    margin-right: 2em;
+
+    background-color: #e0f7f3; 
+    margin: 0;
+    padding: 20px;
 }
-h1{
+h1 {
     color: teal;
 }
-label{
+h2, h3 {
+    margin-top: 1.5em;
+}
+
+body {
+    
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto; 
+    padding: 2em;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+form label {
     float: left;
     width: 10em;
     margin-bottom: 0.5em;
 }
-input[type="text"], input[type="email"],  select {
+
+form input[type="text"], 
+form input[type="email"], 
+form input[type="date"],
+form select {
     width: 15em;
     margin-left: 0.5em; 
     margin-bottom: 0.5em;
 }
-br {
+
+form br {
     clear: both;
 }
-#submit {
-    margin-left: 0.5em; 
+
+#submit, input[value="Return"] {
+    margin-left: 10.5em; 
+    margin-top: 1em;
+}
+
+
+body > label {
+    display: inline-block;
+    width: 12em; 
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    vertical-align: top;
+}
+
+
+body > span {
+    display: inline-block;
+    width: 15em;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+
+body > p:last-of-type {
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    margin-top: 2em;
 }
